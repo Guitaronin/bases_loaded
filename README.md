@@ -1,8 +1,6 @@
 # BasesLoaded
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/bases_loaded`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+This gem provides a simple way to configure multiple database connection pools in a rails application. I previously had success with [octopus](https://github.com/thiagopradi/octopus), but then it wasn't compatible with newer versions of rails. Then I tried [secondbase](https://github.com/customink/secondbase), which has a really elegant implementation, but only seems to support a second connection pool. BasesLoaded is inspired by secondbase, but with a focus on unlimited connection pools.
 
 ## Installation
 
@@ -22,7 +20,30 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+To get started with your new update your database.yml to include a `bases_loaded` config key. Below that, nest keys for each of your databases. BasesLoaded will take it from there.
+
+```yaml
+# Default configurations:
+development:
+  adapter: sqlserver
+  database: myapp_development
+test:
+  adapter: sqlserver
+  database: myapp_test
+# BasesLoaded configurations:
+bases_loaded:
+  my_cool_database:
+    development:
+      adapter: mysql
+      database: myapp_development
+    test:
+      adapter: mysql
+      database: myapp_test
+  my_other_cooler_database:
+    development:
+      adapter: mysql
+      database: myapp_development
+```
 
 ## Development
 
@@ -32,4 +53,4 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/bases_loaded.
+Bug reports and pull requests are welcome on GitHub at https://github.com/Guitaronin/bases_loaded.
