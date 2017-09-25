@@ -1,5 +1,12 @@
 require "bundler/setup"
 require "bases_loaded"
+require 'rails'
+require 'active_record'
+
+spec_dir = File.dirname(File.expand_path(__FILE__))
+database_yml_path = File.join(spec_dir, 'database.yml')
+ActiveRecord::Base.configurations = YAML.load_file(database_yml_path)
+Rails.env = 'test'
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure

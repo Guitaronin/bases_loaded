@@ -1,0 +1,8 @@
+bases_loaded:
+  testdb:
+    test:
+      adapter: sqlite3
+      database: 'testdb_test'
+      username: root
+      password:
+      host: localhost
