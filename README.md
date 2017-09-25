@@ -20,7 +20,7 @@ Or install it yourself as:
 
 ## Usage
 
-To get started with your new update your database.yml to include a `bases_loaded` config key. Below that, nest keys for each of your databases. BasesLoaded will take it from there.
+To get started with your new update your database.yml to include a `bases_loaded` config key. Below that, nest keys for each of your databases.
 
 ```yaml
 # Default configurations:
@@ -43,6 +43,15 @@ bases_loaded:
     development:
       adapter: mysql
       database: myapp_development
+```
+
+Then include and initialize in your model, like so:
+
+```ruby
+class MyModel < ActiveRecord::Base
+  include BasesLoaded
+  bases_loaded_init 'my_cool_database'
+end
 ```
 
 ## Development
