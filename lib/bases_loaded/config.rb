@@ -17,7 +17,7 @@ module BasesLoaded
     def connection_class
       @connection_class ||= begin
         classes = self.class.connection_classes
-        classes[connection_class_name] || new_connection_class
+        classes[config_name] || new_connection_class
       end
     end
 
@@ -36,7 +36,7 @@ module BasesLoaded
         BasesLoaded.const_set(connection_class_name, klass)
         klass.abstract_class = true
         klass.establish_connection(params)
-        self.class.register_connection_class(connection_class_name, klass)
+        self.class.register_connection_class(config_name, klass)
       end
     end
 
