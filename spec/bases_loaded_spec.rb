@@ -41,8 +41,7 @@ RSpec.describe BasesLoaded do
     let(:connection_class) { double }
     let(:model) do
       FakeModel.tap do |m|
-        var = :@bases_loaded_connection_class
-        m.instance_variable_set(var, connection_class)
+        m.bases_loaded_connection_class = connection_class
       end
     end
     describe '.connection_pool' do
