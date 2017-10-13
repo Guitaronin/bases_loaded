@@ -72,6 +72,13 @@ RSpec.describe BasesLoaded do
       end
     end
 
+    describe '.included' do
+      it 'passes config through inheritence' do
+        class Foo < FakeModel; end
+        expect(Foo.bases_loaded_base).to eql 'testdb'
+      end
+    end
+
   end
 
 end
