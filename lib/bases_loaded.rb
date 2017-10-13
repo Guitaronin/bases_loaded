@@ -6,8 +6,11 @@ module BasesLoaded
   def self.included(base)
     base.extend(ClassMethods)
     # This ensures inheriting classes get the same connection pool.
+    old_inherited = base.method(:inherited)
     base.define_singleton_method(:inherited) do |subclass|
-      super(subclass)
+      # I don't user .super() here, because other modules using this same
+      # trick will collide (e.g. BvDatawarehouse)
+      old_inherited.call(subclass)
       subclass.bases_loaded_init(base.bases_loaded_base)
     end
   end
